@@ -23,5 +23,3 @@ import { JwtStrategy } from './jwt.strategy';
   exports: [JwtStrategy, PassportModule],
 })
 export class AuthModule {}
-
-console.log('TEST', process.env.JWT_SECRET);
