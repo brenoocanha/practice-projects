@@ -6,8 +6,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.Date;
+import java.util.Optional;
 import java.util.UUID;
 
 public interface EventRepository extends JpaRepository<Event, UUID> {
@@ -26,4 +28,8 @@ public interface EventRepository extends JpaRepository<Event, UUID> {
                                    @Param("startDate") Date startDate,
                                    @Param("endDate") Date endDate,
                                    Pageable pageable);
+
+    @Query("SELECT e FROM Event e " +
+            "WHERE (:id IS NULL OR e.id = :id)")
+    Optional<Event> findById(@PathVariable("id") UUID id);
 }
