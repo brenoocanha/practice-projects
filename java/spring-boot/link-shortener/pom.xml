@@ -11,8 +11,8 @@
 	<groupId>com.obrenodev</groupId>
 	<artifactId>store</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>store</name>
-	<description>Demo project for Spring Boot</description>
+	<name>link-shortener</name>
+	<description>Practice project for Spring Boot</description>
 	<url/>
 	<licenses>
 		<license/>
