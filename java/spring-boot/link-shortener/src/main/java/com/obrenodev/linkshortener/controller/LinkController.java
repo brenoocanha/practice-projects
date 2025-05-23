@@ -24,7 +24,7 @@ public class LinkController {
 
     @GetMapping("/{url}")
     public RedirectView getLink(@PathVariable String url) {
-        Optional<Link> linkOptional = linkService.getLinkByHashedUrl(url);
+        Optional<Link> linkOptional = linkService.getLinkByEncodedUrl(url);
         if (linkOptional.isPresent()) {
             String originalUrl = linkOptional.get().getUrl();
             return new RedirectView("https://" + originalUrl);

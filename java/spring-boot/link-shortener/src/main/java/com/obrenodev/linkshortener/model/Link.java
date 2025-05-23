@@ -15,5 +15,5 @@ public class Link {
     @Id
     private String id;
     private String url;
-    private String hashedUrl;
+    private String encodedUrl;
 }

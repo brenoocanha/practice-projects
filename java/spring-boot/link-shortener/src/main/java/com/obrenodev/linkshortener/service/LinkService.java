@@ -19,21 +19,21 @@ public class LinkService {
         return linkRepository.findByUrl(url);
     }
 
-    public Optional<Link> getLinkByHashedUrl(String hashedUrl) {
-        return linkRepository.findByHashedUrl(hashedUrl);
+    public Optional<Link> getLinkByEncodedUrl(String encodedUrl) {
+        return linkRepository.findByEncodedUrl(encodedUrl);
     }
 
     public Link createLink(Link link) {
         Optional<Link> existingLink = linkRepository.findByUrl(link.getUrl());
         if (existingLink.isPresent()) return existingLink.get();
 
-        String shortCode = generateHashedUrl(link.getUrl());
-        link.setHashedUrl(shortCode);
+        String shortCode = generateEncodedUrl(link.getUrl());
+        link.setEncodedUrl(shortCode);
 
         return linkRepository.save(link);
     }
 
-    private String generateHashedUrl(String url) {
+    private String generateEncodedUrl(String url) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             byte[] hashBytes = md.digest(url.getBytes());
