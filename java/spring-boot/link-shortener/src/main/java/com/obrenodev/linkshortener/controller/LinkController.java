@@ -6,11 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/links")
+@RequestMapping()
 public class LinkController {
     @Autowired
     private LinkService linkService;
@@ -21,8 +23,14 @@ public class LinkController {
     }
 
     @GetMapping("/{url}")
-    public Optional<Link> getLink(@PathVariable String url) {
-        return linkService.getLinkByHashedUrl(url);
+    public RedirectView getLink(@PathVariable String url) {
+        Optional<Link> linkOptional = linkService.getLinkByHashedUrl(url);
+        if (linkOptional.isPresent()) {
+            String originalUrl = linkOptional.get().getUrl();
+            return new RedirectView("https://" + originalUrl);
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
     }
 
     @PostMapping
