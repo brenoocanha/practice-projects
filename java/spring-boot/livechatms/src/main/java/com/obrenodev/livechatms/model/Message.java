@@ -16,8 +16,7 @@ import lombok.NoArgsConstructor;
 public class Message {
     @Id
     private String id;
-    private String sender;
-    private String receiver;
-    private String text;
+    private String user;
+    private String message;
     private Date date;
 }
