@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5089cd92-2ff8-428b-933c-33f8f3448aaf" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/str-producer/src/main/java/dev/obreno/strproducer/config/KafkaAdminConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/str-producer/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/str-producer/src/main/resources/application.yaml" afterDir="false" />
-    </list>
+    <list default="true" id="5089cd92-2ff8-428b-933c-33f8f3448aaf" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -64,6 +58,7 @@
       <workItem from="1749310498818" duration="129000" />
       <workItem from="1749311974919" duration="48000" />
       <workItem from="1749312168305" duration="20000" />
+      <workItem from="1749401490136" duration="61000" />
     </task>
     <servers />
   </component>
