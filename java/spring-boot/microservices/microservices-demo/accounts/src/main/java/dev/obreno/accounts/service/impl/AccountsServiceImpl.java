@@ -1,10 +1,13 @@
 package dev.obreno.accounts.service.impl;
 
 import dev.obreno.accounts.constants.AccountsConstants;
+import dev.obreno.accounts.dto.AccountsDto;
 import dev.obreno.accounts.dto.CustomerDto;
 import dev.obreno.accounts.entity.Accounts;
 import dev.obreno.accounts.entity.Customer;
 import dev.obreno.accounts.exception.CustomerAlreadyExistsException;
+import dev.obreno.accounts.exception.ResourceNotFoundException;
+import dev.obreno.accounts.mapper.AccountsMapper;
 import dev.obreno.accounts.mapper.CustomerMapper;
 import dev.obreno.accounts.repository.AccountsRepository;
 import dev.obreno.accounts.repository.CustomerRepository;
@@ -54,5 +57,22 @@ public class AccountsServiceImpl implements IAccountsService {
         newAccount.setCreatedAt(LocalDateTime.now());
         newAccount.setCreatedBy("Anonymous");
         return newAccount;
+    }
+
+    /**
+     * @param mobileNumber - Input Mobile Number
+     * @return Account details based on a given mobileNumber
+     */
+    @Override
+    public CustomerDto fetchAccount(String mobileNumber) {
+        Customer customer = customerRepository.findByMobileNumber(mobileNumber).orElseThrow(
+                () -> new ResourceNotFoundException("Customer", "mobileNumber", mobileNumber)
+        );
+        Accounts accounts = accountsRepository.findByCustomerId(customer.getCustomerId()).orElseThrow(
+                () -> new ResourceNotFoundException("Account", "customerId", customer.getCustomerId().toString())
+        );
+        CustomerDto customerDto = CustomerMapper.mapToCustomerDto(customer, new CustomerDto());
+        customerDto.setAccountsDto(AccountsMapper.mapToAccountsDto(accounts, new AccountsDto()));
+        return customerDto;
     }
 }
